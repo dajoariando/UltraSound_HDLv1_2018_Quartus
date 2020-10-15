@@ -25,11 +25,11 @@ module Ultrasound_FSM_tb;
 	reg CLK;                  
 	reg RESET;
 
-	Ultrasound_FSM DUT
+	Ultrasound_FSM
 	#(
 		.ADC_SAMPLES_PER_ECHO_WIDTH (ADC_SAMPLES_PER_ECHO_WIDTH),
 		.ADC_INIT_DELAY_WIDTH (ADC_INIT_DELAY_WIDTH)
-	)
+	) DUT
 	(
 		// Control Signals
 		.START		(START	),  	//Starting of TX Firing and Data Acquisiton
