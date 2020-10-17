@@ -1110,17 +1110,6 @@ set_global_assignment -name QIP_FILE soc_system/synthesis/soc_system.qip
 set_global_assignment -name SIGNALTAP_FILE adc_test.stp
 set_location_assignment PIN_AC12 -to TXRX_SW_OFF
 set_location_assignment PIN_AA12 -to TXRX_SPI_EN
-set_location_assignment PIN_W15 -to MUX_CNT[0]
-set_location_assignment PIN_Y16 -to MUX_CNT[1]
-set_location_assignment PIN_AJ1 -to MUX_CNT[2]
-set_location_assignment PIN_AH2 -to MUX_CNT[3]
-set_location_assignment PIN_AH4 -to MUX_CNT[4]
-set_location_assignment PIN_AK2 -to MUX_CNT[5]
-set_location_assignment PIN_AK3 -to MUX_CNT[6]
-set_location_assignment PIN_AJ2 -to MUX_CNT[7]
-set_location_assignment PIN_AH3 -to MUX_CNT[8]
-set_location_assignment PIN_AH5 -to MUX_CNT[9]
-set_location_assignment PIN_AG2 -to MUX_CNT[10]
 set_location_assignment PIN_AG8 -to ADC_AD9276_CSB1
 set_location_assignment PIN_AF4 -to ADC_AD9276_SCLK
 set_location_assignment PIN_AG7 -to ADC_AD9276_SDI
@@ -1413,5 +1402,17 @@ set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[18] -
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[24] -to adc_test|vcc -section_id adc_test
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[26] -to adc_test|vcc -section_id adc_test
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[30] -to adc_test|gnd -section_id adc_test
+set_location_assignment PIN_AH3 -to CNTRL[0]
+set_location_assignment PIN_AJ2 -to CNTRL[1]
+set_location_assignment PIN_AH2 -to CNTRL[2]
+set_location_assignment PIN_AJ1 -to CNTRL[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CNTRL[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CNTRL[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CNTRL[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CNTRL[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CNTRL[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CNTRL[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CNTRL[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CNTRL[2]
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
 set_global_assignment -name SLD_FILE db/adc_test_auto_stripped.stp

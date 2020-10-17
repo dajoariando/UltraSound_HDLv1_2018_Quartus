@@ -136,7 +136,7 @@ module DE10_Standard_GHRD(
 	input       [3:0]  HPS_ENET_RX_DATA,
 	input              HPS_ENET_RX_DV,
 	output      [3:0]  HPS_ENET_TX_DATA,
-	output             HPS_ENET_LM96570_TX_EN,
+	output             HPS_ENET_TX_EN,
 	inout       [3:0]  HPS_FLASH_DATA,
 	output             HPS_FLASH_DCLK,
 	output             HPS_FLASH_NCSO,
@@ -224,6 +224,7 @@ module DE10_Standard_GHRD(
 	
 	// control signals
 	output PULSER_EN,
+	output [3:0] CNTRL,				
 
 	// OTHERS / not used
 	output AD9516_in,
@@ -238,6 +239,10 @@ module DE10_Standard_GHRD(
 	wire PLLOUT;
 	wire [9:0] ISSP_CNT;
 
+	// mux control
+	wire MUX_LE;
+	wire MUX_SET;
+	wire MUX_CLR;		   
 	// control signals from HPC
 	wire BF_SPI_START;
 	wire BF_SPI_RESET;
@@ -317,7 +322,7 @@ module DE10_Standard_GHRD(
 		.hps_0_hps_io_hps_io_emac1_inst_MDIO   ( HPS_ENET_MDIO ),         //                             .hps_io_emac1_inst_MDIO
 		.hps_0_hps_io_hps_io_emac1_inst_MDC    ( HPS_ENET_MDC  ),         //                             .hps_io_emac1_inst_MDC
 		.hps_0_hps_io_hps_io_emac1_inst_RX_CTL ( HPS_ENET_RX_DV),         //                             .hps_io_emac1_inst_RX_CTL
-		.hps_0_hps_io_hps_io_emac1_inst_TX_CTL ( HPS_ENET_LM96570_TX_EN),         //                             .hps_io_emac1_inst_TX_CTL
+		.hps_0_hps_io_hps_io_emac1_inst_TX_CTL ( HPS_ENET_TX_EN),         //                             .hps_io_emac1_inst_TX_CTL
 		.hps_0_hps_io_hps_io_emac1_inst_RX_CLK ( HPS_ENET_RX_CLK),        //                             .hps_io_emac1_inst_RX_CLK
 		.hps_0_hps_io_hps_io_emac1_inst_RXD1   ( HPS_ENET_RX_DATA[1] ),   //                             .hps_io_emac1_inst_RXD1
 		.hps_0_hps_io_hps_io_emac1_inst_RXD2   ( HPS_ENET_RX_DATA[2] ),   //                             .hps_io_emac1_inst_RXD2
@@ -404,6 +409,9 @@ module DE10_Standard_GHRD(
         .ad9276_spi_external_SS_n              (), // keep it high-Z
 		
         .general_cnt_out_export                ({	
+			MUX_LE,
+			MUX_SET,
+			MUX_CLR,
 			FSM_RESET,
 			TXRX_SW_OFF,
 			TXRX_SPI_EN,
@@ -462,8 +470,8 @@ module DE10_Standard_GHRD(
 	
 	
 		.mux_spi_MISO                          (),                          //                        mux_spi.MISO
-      .mux_spi_MOSI                          (),                          //                               .MOSI
-      .mux_spi_SCLK                          (),                          //                               .SCLK
+      .mux_spi_MOSI                          (CNTRL[0]),                          //                               .MOSI
+      .mux_spi_SCLK                          (CNTRL[1]),                          //                               .SCLK
       .mux_spi_SS_n                          ()
 	
 	
@@ -637,6 +645,9 @@ module DE10_Standard_GHRD(
 	);
 	
 	
+	assign CNTRL[2] = MUX_LE;
+	assign CNTRL[3] = MUX_CLR;
+	// assign CNTRL[4] = MUX_SET;	
 	
 endmodule
 
