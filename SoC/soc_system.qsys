@@ -247,7 +247,7 @@
    {
       datum baseAddress
       {
-         value = "1056";
+         value = "1088";
          type = "String";
       }
    }
@@ -255,7 +255,7 @@
    {
       datum baseAddress
       {
-         value = "1112";
+         value = "1144";
          type = "String";
       }
    }
@@ -263,7 +263,7 @@
    {
       datum baseAddress
       {
-         value = "1024";
+         value = "864";
          type = "String";
       }
    }
@@ -279,7 +279,7 @@
    {
       datum baseAddress
       {
-         value = "960";
+         value = "1056";
          type = "String";
       }
    }
@@ -287,7 +287,7 @@
    {
       datum baseAddress
       {
-         value = "1104";
+         value = "1136";
          type = "String";
       }
    }
@@ -295,7 +295,7 @@
    {
       datum baseAddress
       {
-         value = "992";
+         value = "832";
          type = "String";
       }
    }
@@ -311,7 +311,7 @@
    {
       datum baseAddress
       {
-         value = "896";
+         value = "1024";
          type = "String";
       }
    }
@@ -319,7 +319,7 @@
    {
       datum baseAddress
       {
-         value = "1096";
+         value = "1128";
          type = "String";
       }
    }
@@ -327,7 +327,7 @@
    {
       datum baseAddress
       {
-         value = "928";
+         value = "800";
          type = "String";
       }
    }
@@ -343,7 +343,7 @@
    {
       datum baseAddress
       {
-         value = "832";
+         value = "992";
          type = "String";
       }
    }
@@ -351,7 +351,7 @@
    {
       datum baseAddress
       {
-         value = "1088";
+         value = "1120";
          type = "String";
       }
    }
@@ -359,7 +359,7 @@
    {
       datum baseAddress
       {
-         value = "864";
+         value = "768";
          type = "String";
       }
    }
@@ -375,7 +375,7 @@
    {
       datum baseAddress
       {
-         value = "800";
+         value = "960";
          type = "String";
       }
    }
@@ -391,7 +391,7 @@
    {
       datum baseAddress
       {
-         value = "768";
+         value = "736";
          type = "String";
       }
    }
@@ -407,7 +407,7 @@
    {
       datum baseAddress
       {
-         value = "704";
+         value = "928";
          type = "String";
       }
    }
@@ -423,7 +423,7 @@
    {
       datum baseAddress
       {
-         value = "736";
+         value = "704";
          type = "String";
       }
    }
@@ -439,7 +439,7 @@
    {
       datum baseAddress
       {
-         value = "352";
+         value = "896";
          type = "String";
       }
    }
@@ -802,6 +802,14 @@
          type = "int";
       }
    }
+   element lm96570_spi_pll.outclk0
+   {
+      datum _tags
+      {
+         value = "";
+         type = "String";
+      }
+   }
    element mm_bridge_0
    {
       datum _sortIndex
@@ -839,6 +847,22 @@
          type = "String";
       }
    }
+   element mux_spi
+   {
+      datum _sortIndex
+      {
+         value = "44";
+         type = "int";
+      }
+   }
+   element mux_spi.spi_control_port
+   {
+      datum baseAddress
+      {
+         value = "352";
+         type = "String";
+      }
+   }
    element sysid_qsys
    {
       datum _sortIndex
@@ -856,7 +880,7 @@
       }
       datum baseAddress
       {
-         value = "1120";
+         value = "1152";
          type = "String";
       }
    }
@@ -1044,6 +1068,7 @@
    internal="mux_control.external_connection"
    type="conduit"
    dir="end" />
+ <interface name="mux_spi" internal="mux_spi.external" type="conduit" dir="end" />
  <interface name="reset" internal="clk_0.clk_in_reset" type="reset" dir="end" />
  <module
    name="ADC_INIT_DELAY"
@@ -2533,6 +2558,22 @@
   <parameter name="simDrivenValue" value="0" />
   <parameter name="width" value="11" />
  </module>
+ <module name="mux_spi" kind="altera_avalon_spi" version="17.1" enabled="1">
+  <parameter name="avalonSpec" value="2.0" />
+  <parameter name="clockPhase" value="0" />
+  <parameter name="clockPolarity" value="0" />
+  <parameter name="dataWidth" value="8" />
+  <parameter name="disableAvalonFlowControl" value="false" />
+  <parameter name="inputClockRate" value="50000000" />
+  <parameter name="insertDelayBetweenSlaveSelectAndSClk" value="false" />
+  <parameter name="insertSync" value="false" />
+  <parameter name="lsbOrderedFirst" value="false" />
+  <parameter name="masterSPI" value="true" />
+  <parameter name="numberOfSlaves" value="1" />
+  <parameter name="syncRegDepth" value="2" />
+  <parameter name="targetClockRate" value="128000" />
+  <parameter name="targetSlaveSelectToSClkDelay" value="0.0" />
+ </module>
  <module
    name="sysid_qsys"
    kind="altera_avalon_sysid_qsys"
@@ -2573,7 +2614,7 @@
    start="mm_bridge_0.m0"
    end="sysid_qsys.control_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0460" />
+  <parameter name="baseAddress" value="0x0480" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -2591,7 +2632,7 @@
    start="mm_bridge_0.m0"
    end="fifo_sink_CH_B.in_csr">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0420" />
+  <parameter name="baseAddress" value="0x0440" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -2600,7 +2641,7 @@
    start="mm_bridge_0.m0"
    end="fifo_sink_CH_C.in_csr">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x03c0" />
+  <parameter name="baseAddress" value="0x0420" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -2609,7 +2650,7 @@
    start="mm_bridge_0.m0"
    end="fifo_sink_CH_D.in_csr">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0380" />
+  <parameter name="baseAddress" value="0x0400" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -2618,7 +2659,7 @@
    start="mm_bridge_0.m0"
    end="fifo_sink_CH_E.in_csr">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0340" />
+  <parameter name="baseAddress" value="0x03e0" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -2627,7 +2668,7 @@
    start="mm_bridge_0.m0"
    end="fifo_sink_CH_F.in_csr">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0320" />
+  <parameter name="baseAddress" value="0x03c0" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -2636,7 +2677,7 @@
    start="mm_bridge_0.m0"
    end="fifo_sink_CH_G.in_csr">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x02c0" />
+  <parameter name="baseAddress" value="0x03a0" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -2645,7 +2686,7 @@
    start="mm_bridge_0.m0"
    end="fifo_sink_CH_H.in_csr">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0160" />
+  <parameter name="baseAddress" value="0x0380" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -2663,7 +2704,7 @@
    start="mm_bridge_0.m0"
    end="fifo_sink_CH_B.out">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0458" />
+  <parameter name="baseAddress" value="0x0478" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -2672,7 +2713,7 @@
    start="mm_bridge_0.m0"
    end="fifo_sink_CH_C.out">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0450" />
+  <parameter name="baseAddress" value="0x0470" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -2681,7 +2722,7 @@
    start="mm_bridge_0.m0"
    end="fifo_sink_CH_D.out">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0448" />
+  <parameter name="baseAddress" value="0x0468" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -2690,7 +2731,7 @@
    start="mm_bridge_0.m0"
    end="fifo_sink_CH_E.out">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0440" />
+  <parameter name="baseAddress" value="0x0460" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -2735,7 +2776,7 @@
    start="mm_bridge_0.m0"
    end="fifo_sink_CH_B.out_csr">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0400" />
+  <parameter name="baseAddress" value="0x0360" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -2744,7 +2785,7 @@
    start="mm_bridge_0.m0"
    end="fifo_sink_CH_C.out_csr">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x03e0" />
+  <parameter name="baseAddress" value="0x0340" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -2753,7 +2794,7 @@
    start="mm_bridge_0.m0"
    end="fifo_sink_CH_D.out_csr">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x03a0" />
+  <parameter name="baseAddress" value="0x0320" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -2762,7 +2803,7 @@
    start="mm_bridge_0.m0"
    end="fifo_sink_CH_E.out_csr">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0360" />
+  <parameter name="baseAddress" value="0x0300" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -2771,7 +2812,7 @@
    start="mm_bridge_0.m0"
    end="fifo_sink_CH_F.out_csr">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0300" />
+  <parameter name="baseAddress" value="0x02e0" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -2780,7 +2821,7 @@
    start="mm_bridge_0.m0"
    end="fifo_sink_CH_G.out_csr">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x02e0" />
+  <parameter name="baseAddress" value="0x02c0" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -2944,6 +2985,15 @@
  <connection
    kind="avalon"
    version="17.1"
+   start="mm_bridge_0.m0"
+   end="mux_spi.spi_control_port">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0160" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="17.1"
    start="fpga_only_master.master"
    end="jtag_uart.avalon_jtag_slave">
   <parameter name="arbitrationPriority" value="1" />
@@ -2965,7 +3015,7 @@
    start="fpga_only_master.master"
    end="sysid_qsys.control_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0460" />
+  <parameter name="baseAddress" value="0x0480" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -3137,6 +3187,7 @@
    start="clk_0.clk"
    end="ADC_START_pulselength.clk" />
  <connection kind="clock" version="17.1" start="clk_0.clk" end="mux_control.clk" />
+ <connection kind="clock" version="17.1" start="clk_0.clk" end="mux_spi.clk" />
  <connection
    kind="clock"
    version="17.1"
@@ -3310,6 +3361,13 @@
    end="ad9276_spi.irq">
   <parameter name="irqNumber" value="0" />
  </connection>
+ <connection
+   kind="interrupt"
+   version="17.1"
+   start="hps_0.f2h_irq1"
+   end="mux_spi.irq">
+  <parameter name="irqNumber" value="1" />
+ </connection>
  <connection kind="interrupt" version="17.1" start="ILC.irq" end="jtag_uart.irq">
   <parameter name="irqNumber" value="0" />
  </connection>
@@ -3479,6 +3537,11 @@
    version="17.1"
    start="clk_0.clk_reset"
    end="mux_control.reset" />
+ <connection
+   kind="reset"
+   version="17.1"
+   start="clk_0.clk_reset"
+   end="mux_spi.reset" />
  <connection
    kind="reset"
    version="17.1"

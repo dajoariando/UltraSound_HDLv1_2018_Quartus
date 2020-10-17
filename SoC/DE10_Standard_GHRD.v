@@ -458,7 +458,14 @@ module DE10_Standard_GHRD(
 	
 		.adc_start_pulselength_export          (ADC_START_length),          					//          adc_start_pulselength.export
 		
-		.mux_control_export                    (MUX_CNT)                     					//                    MUX_CNT.export
+		.mux_control_export                    (MUX_CNT),                     					//                    MUX_CNT.export
+	
+	
+		.mux_spi_MISO                          (),                          //                        mux_spi.MISO
+      .mux_spi_MOSI                          (),                          //                               .MOSI
+      .mux_spi_SCLK                          (),                          //                               .SCLK
+      .mux_spi_SS_n                          ()
+	
 	
 	);
 	
